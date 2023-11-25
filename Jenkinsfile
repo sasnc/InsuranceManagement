@@ -61,7 +61,7 @@ node{
 	}
 	stage('Run Ansible Playbook') {
                 ansiblePlaybook(
-                	sudo: true,
+                	become: true,
 			playbook: 'ansible-playbook.yml',
                         inventory: '/etc/ansible/hosts',
                     )
