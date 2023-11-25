@@ -60,9 +60,9 @@ node{
 		echo "Application started on port: ${httpPort} (http)"
 	}
 	stage('Run Ansible Playbook') {
-                sh "sudo su -"
-		ansiblePlaybook(
-                	playbook: 'ansible-playbook.yml',
+                ansiblePlaybook(
+                	sudo: true
+			playbook: 'ansible-playbook.yml',
                         inventory: '/etc/ansible/hosts',
                     )
         
