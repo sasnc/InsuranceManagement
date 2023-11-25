@@ -60,14 +60,11 @@ node{
 		echo "Application started on port: ${httpPort} (http)"
 	}
 	stage('Run Ansible Playbook') {
-            steps {
-                script {
-                    ansiblePlaybook(
-                        playbook: 'ansible-playbook.yml',
+                ansiblePlaybook(
+                	playbook: 'ansible-playbook.yml',
                         inventory: '/etc/ansible/hosts',
                     )
-                }
-            }
+        
         }
 }
 
