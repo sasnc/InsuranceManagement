@@ -61,7 +61,7 @@ node{
 	}
 	stage('Run Ansible Playbook') {
                 ansiblePlaybook(
-                	credentialsId: 'ansiblecredentials'
+                	credentialsId: 'ansiblecredentials',
 			become: true,
 			playbook: 'ansible-playbook.yml',
                         inventory: '/etc/ansible/hosts',
