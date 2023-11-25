@@ -5,6 +5,7 @@ node{
     stage('Prepare Environment'){
         echo 'Initialize Environment'
         mavenHome = tool name: 'maven' , type: 'maven'
+	ANSIBLE_HOME = tool 'Ansible'
         mavenCMD = "${mavenHome}/bin/mvn"
         tag="3.0"
 	dockerHubUser="sasnc"
@@ -58,6 +59,16 @@ node{
 		sh "docker run -d --rm -p $httpPort:$httpPort --name $containerName $dockerHubUser/$containerName:$tag"
 		echo "Application started on port: ${httpPort} (http)"
 	}
+	stage('Run Ansible Playbook') {
+            steps {
+                script {
+                    ansiblePlaybook(
+                        playbook: 'ansible-playbook.yml',
+                        inventory: '/etc/ansible/hosts',
+                    )
+                }
+            }
+        }
 }
 
 
